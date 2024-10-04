@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Description from "./components/App/Description/Description"
 import Options from "./components/App/Options/Options"
 import Feedback from "./components/App/Feedback/Feedback"
