@@ -4,11 +4,15 @@ import Options from "./components/App/Options/Options"
 import Feedback from "./components/App/Feedback/Feedback"
 
 const App = () => {
-  const [categories, setCategories] = useState({
-	good: 0,
-	neutral: 0,
-	bad: 0
+   const [categories, setCategories] = useState(() => {
+    const parsedCategories = JSON.parse(localStorage.getItem('categories')) ?? {good: 0, neutral: 0, bad: 0}
+    return parsedCategories;
   })
+  
+  useEffect(() => {
+    const stringifyedCategories = JSON.stringify(categories);
+    localStorage.setItem("categories", stringifyedCategories);
+  }, [categories])
 
   const totalFeedback = categories.good + categories.neutral + categories.bad;
   const positiveFeedback = Math.round((categories.good / totalFeedback) * 100);
